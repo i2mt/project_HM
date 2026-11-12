@@ -3,7 +3,7 @@
   IMPORTANT: This is a courtesy gate, not secure authentication.
   The code is visible to anyone who inspects the public JavaScript.
 */
-const ACCESS_CODE = "REPLACE_WITH_A_RANDOM_10_DIGIT_CODE";
+const ACCESS_CODE = "2741537852";
 const GAME_URL = "https://i2mt.github.io/Narcissu/";
 
 const form = document.getElementById("access-form");
