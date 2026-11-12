@@ -51,7 +51,20 @@ h1 em { display: inline-block; margin-top: 5px; color: #ffc2b7; font-weight: 500
 .message { margin: 25px 0 0; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.96); }
 .instruction { max-width: 340px; margin: 12px auto 25px; color: var(--muted); font-size: 12px; line-height: 1.75; }
 form { width: min(100%, 330px); margin: 0 auto; text-align: left; }
-label { display: block; margin: 0 4px 8px; font-family: "Noto Sans Arabic", sans-serif; font-size: 13px; color: #ffe0d9; }
+label {
+  display: inline-block;
+  margin: 0 4px 9px;
+  padding: 5px 12px 6px;
+  border: 1px solid rgba(255, 231, 226, .58);
+  border-radius: 5px;
+  background: rgba(12, 17, 31, .72);
+  color: #fffaf7;
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, .85);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, .2);
+}
 .input-wrap { display: flex; align-items: stretch; min-height: 54px; border: 1px solid rgba(255,255,255,.46); border-radius: 7px; background: rgba(13, 18, 34, .30); backdrop-filter: blur(14px); overflow: hidden; transition: border-color .2s, box-shadow .2s, background .2s; }
 input { min-width: 0; flex: 1; padding: 0 15px; border: 0; outline: 0; color: white; background: transparent; text-align: center; letter-spacing: .34em; font-size: 16px; }
 input::placeholder { color: rgba(255,255,255,.48); letter-spacing: .3em; }
