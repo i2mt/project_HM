@@ -13,19 +13,24 @@ const message = document.getElementById("form-message");
 const successPanel = document.getElementById("success-panel");
 const projectLink = document.getElementById("project-link");
 
+function clearError() {
+  form.classList.remove("is-error");
+  input.removeAttribute("aria-invalid");
+}
+
+input.addEventListener("input", clearError);
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  clearError();
 
   const code = input.value.trim();
 
   if (!/^\d{10}$/.test(code)) {
-    message.textContent = "Please enter the 10-digit code.";
+    form.classList.add("is-error");
+    input.setAttribute("aria-invalid", "true");
+    message.textContent = "Please enter all 10 digits.";
     input.focus();
-    return;
-  }
-
-  if (ACCESS_CODE === "REPLACE_WITH_A_RANDOM_10_DIGIT_CODE") {
-    message.textContent = "The access code hasn't been configured yet.";
     return;
   }
 
@@ -33,12 +38,15 @@ form.addEventListener("submit", (event) => {
   message.textContent = "Checking…";
 
   if (code !== ACCESS_CODE) {
-    message.textContent = "That code doesn't seem to match. Please try again.";
+    form.classList.add("is-error");
+    input.setAttribute("aria-invalid", "true");
+    message.textContent = "That code doesn't match. Please try again.";
     input.select();
     button.disabled = false;
     return;
   }
 
+  form.classList.add("is-success");
   projectLink.href = GAME_URL;
   successPanel.hidden = false;
   form.hidden = true;
