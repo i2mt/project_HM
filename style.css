@@ -25,19 +25,25 @@ body {
   justify-content: center;
   overflow: hidden;
   padding: max(38px, env(safe-area-inset-top)) 24px max(38px, env(safe-area-inset-bottom));
-  background:
-    radial-gradient(ellipse at 50% 72%, rgba(255, 174, 151, .25), transparent 31%),
-    radial-gradient(ellipse at 15% 42%, rgba(112, 91, 139, .25), transparent 42%),
-    linear-gradient(180deg, #090f20 0%, #17223a 27%, #39415e 52%, #88566a 77%, #e09a83 100%);
+  /* Place the supplied wallpaper at assets/your-name-background.jpg */
+  background-color: #101522;
+  background-image:
+    linear-gradient(180deg, rgba(8, 13, 29, .34) 0%, rgba(10, 14, 28, .18) 42%, rgba(8, 12, 25, .58) 100%),
+    linear-gradient(90deg, rgba(7, 11, 25, .28), transparent 24% 76%, rgba(7, 11, 25, .22)),
+    url("assets/your-name-background.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .scene::after {
   content: "";
   position: absolute;
-  z-index: -2;
+  z-index: 0;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(7, 11, 25, .26), transparent 28% 72%, rgba(7, 11, 25, .2));
+  background: linear-gradient(180deg, rgba(7, 11, 25, .10), transparent 38%, rgba(7, 11, 25, .24));
 }
+.sky-glow, .stars, .meteor, .horizon { display: none !important; }
 .sky-glow {
   position: absolute; z-index: -3; inset: 0;
   background:
@@ -92,11 +98,13 @@ body {
     linear-gradient(90deg, transparent 0 4%, #171d2d 4% 9%, transparent 9% 12%, #171d2d 12% 17%, transparent 17% 20%, #171d2d 20% 26%, transparent 26% 31%, #171d2d 31% 37%, transparent 37% 42%, #171d2d 42% 48%, transparent 48% 53%, #171d2d 53% 60%, transparent 60% 64%, #171d2d 64% 70%, transparent 70% 74%, #171d2d 74% 81%, transparent 81% 85%, #171d2d 85% 92%, transparent 92%);
   clip-path: polygon(0 42%, 6% 42%, 6% 15%, 11% 15%, 11% 42%, 17% 42%, 17% 0, 23% 0, 23% 42%, 30% 42%, 30% 23%, 36% 23%, 36% 42%, 42% 42%, 42% 7%, 48% 7%, 48% 42%, 54% 42%, 54% 17%, 60% 17%, 60% 42%, 68% 42%, 68% 2%, 74% 2%, 74% 42%, 82% 42%, 82% 22%, 88% 22%, 88% 42%, 95% 42%, 95% 12%, 100% 12%, 100% 100%, 0 100%);
 }
-.red-thread { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; opacity: .9; pointer-events: none; }
+.red-thread { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; opacity: .92; pointer-events: none; }
 .thread-shadow { fill: none; stroke: #6b1c36; stroke-width: 8; opacity: .58; }
 .thread-main { fill: none; stroke: url(#threadShade); stroke-width: 3.5; filter: url(#threadGlow); }
 .thread-highlight { fill: none; stroke: rgba(255, 213, 204, .8); stroke-width: .9; stroke-dasharray: 3 8; }
 .content {
+  position: relative;
+  z-index: 2;
   width: min(100%, 440px);
   margin: 0 auto;
   text-align: center;
@@ -134,7 +142,7 @@ button:disabled { opacity: .55; cursor: wait; }
 @keyframes success-arrive { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .signoff { margin: 25px 0 0; color: rgba(255,255,255,.9); font: italic 16px "Playfair Display", Georgia, serif; }
 .signoff-dot { color: #ff9c9e; }
-.footer { position: absolute; bottom: max(17px, env(safe-area-inset-bottom)); left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 13px; color: rgba(255,255,255,.57); font-size: 8px; letter-spacing: .19em; }
+.footer { position: absolute; z-index: 2; bottom: max(17px, env(safe-area-inset-bottom)); left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 13px; color: rgba(255,255,255,.57); font-size: 8px; letter-spacing: .19em; }
 .footer-star { color: #ffc0b3; font-size: 11px; }
 [hidden] { display: none !important; }
 @media (max-height: 740px) {
@@ -146,10 +154,7 @@ button:disabled { opacity: .55; cursor: wait; }
   .signoff { margin-top: 17px; }
   .horizon { height: 28%; }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .red-thread { animation: thread-drift 14s ease-in-out infinite alternate; }
-  @keyframes thread-drift { from { transform: translate3d(-3px, 0, 0); } to { transform: translate3d(4px, -7px, 0); } }
-}
+/* The string of fate is intentionally still, like a fine thread laid over the photograph. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
