@@ -14,18 +14,22 @@
 <body>
   <main class="scene">
     <section class="content" aria-labelledby="headline">
-      <div class="eyebrow"><span class="eyebrow-line"></span> A small note beneath the same sky <span class="eyebrow-line"></span></div>
-      <div class="title-mark" aria-hidden="true">結び</div>
-      <h1 id="headline">Welcome,<br><em>Hedo.</em></h1>
-      <p class="message">
-        This is something I'd like you to see,<br class="desktop-break">
-        and I hope you'll enjoy it.
-      </p>
-      <p class="instruction">
-        To make it private just for you, please enter your code below to reveal the link to the project.
-      </p>
+      <div class="intro">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A small note beneath the same sky <span class="eyebrow-line"></span></div>
+        <div class="title-mark" aria-hidden="true">結び</div>
+        <h1 id="headline">Welcome,<br><em>Hedo.</em></h1>
+      </div>
 
-      <form id="access-form" novalidate>
+      <div class="details">
+        <p class="message">
+          This is something I'd like you to see,<br class="desktop-break">
+          and I hope you'll enjoy it.
+        </p>
+        <p class="instruction">
+          To make it private just for you, please enter your code below to reveal the link to the project.
+        </p>
+
+        <form id="access-form" novalidate>
         <label for="access-code" lang="fa" dir="rtl">کد ملی</label>
         <div class="input-wrap">
           <input id="access-code" name="code" type="password" inputmode="numeric"
@@ -45,7 +49,8 @@
         </a>
       </div>
 
-      <p class="signoff">Best wishes<span class="signoff-dot">.</span></p>
+        <p class="signoff">Best wishes<span class="signoff-dot">.</span></p>
+      </div>
     </section>
 
     <footer class="footer">
