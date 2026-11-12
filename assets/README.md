@@ -8,4 +8,4 @@ The site loads it from:
 
 `assets/your-name-background.jpg`
 
-Keep the image in its original orientation and resolution. A portrait image is best for the phone-first layout. The CSS applies a subtle dark overlay for text readability; the red braided string is drawn separately by the page, so the photo itself remains unchanged.
+Keep the image in its original orientation and resolution. A portrait image is best for the phone-first layout. The page uses the image directly as its background; no synthetic scenery, gradient overlay, or string-of-fate graphic is added by CSS.
