@@ -1,65 +1,55 @@
-# Project HM — private Narcissu landing page
+# Project HM — GitHub Pages landing page
 
 A responsive, single-page invitation with a twilight sky, a subtle red-thread motif, a Persian code label, and a reveal step for the Narcissu link.
 
-## Important privacy note
+## Hosting
 
-The field label is `کد ملی` because that is the wording requested for the page. **Do not use anyone's actual national ID as the credential.** Use a separate, random 10-digit access code. The credential is stored as a Cloudflare Worker secret and is not committed to this repository or sent to the browser as an expected value.
+This project uses **GitHub Pages only**. It does not require Cloudflare, a Worker, KV, a backend, or external access-control services.
 
-The page records only:
-- a page-open event;
-- a successful code-entry event;
-- the event timestamp.
+## Configure the access gate
 
-It does not intentionally store IP addresses, location, device identifiers, or fingerprints. Hosting/network providers may independently process standard request metadata.
+Open `script.js` and replace:
+
+```js
+const ACCESS_CODE = "REPLACE_WITH_A_RANDOM_10_DIGIT_CODE";
+```
+
+with a separate, random 10-digit code that is **not** anyone's national ID, account number, or other personal identifier.
+
+The Narcissu destination is currently set to:
+
+`https://i2mt.github.io/Narcissu/`
+
+Change `GAME_URL` in `script.js` only if the game's published address changes.
+
+### Important limitation
+
+GitHub Pages is static hosting. The access code and destination URL are included in public client-side JavaScript and can be discovered by inspecting the page source or browser files. This gate is only a courtesy screen that keeps the link out of the visible page until the code is entered; it is **not secure authentication** and cannot prevent someone from sharing the link.
+
+Do not use a real national ID or any sensitive personal information as the code.
+
+## Privacy
+
+The page does not intentionally record page visits, successful entries, IP addresses, location, device identifiers, or fingerprints. GitHub and network providers may independently process standard hosting/request metadata under their own policies.
 
 ## Files
 
 - `index.html` — page structure and copy
 - `style.css` — responsive visual design
-- `script.js` — form behavior; contains only the Worker endpoint placeholder
-- `worker.js` — server-side validation and optional timestamp-only KV logging
+- `script.js` — local code check and link reveal
 
-## Setup
+## Publish with GitHub Pages
 
-### 1. Create a Cloudflare Worker
+In the repository:
 
-Create a Worker and paste the contents of `worker.js`.
+1. Open **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select branch `main` and folder `/ (root)`.
+4. Save and wait for GitHub Pages to publish.
 
-Add these Worker variables/secrets:
-- `ACCESS_CODE` — a separate 10-digit access code. Add it as a **secret**, not a plain variable.
-- `GAME_URL` — the full HTTPS URL of the Narcissu game.
+## Test
 
-Create a Cloudflare KV namespace and bind it to the Worker as `EVENTS`.
-
-### 2. Restrict CORS
-
-In `worker.js`, replace the wildcard `Access-Control-Allow-Origin` value with the exact GitHub Pages origin, for example:
-
-`https://i2mt.github.io`
-
-If using a custom domain, use that exact origin instead.
-
-### 3. Connect the page to the Worker
-
-After deployment, copy the Worker URL into `WORKER_URL` in `script.js`.
-
-### 4. Publish with GitHub Pages
-
-Push these files to the root of the `project_HM` repository. In GitHub:
-- open **Settings → Pages**;
-- choose **Deploy from a branch**;
-- select `main` and `/ (root)`;
-- save and wait for deployment.
-
-## Testing checklist
-
-- Test the layout at an iPhone-sized viewport in portrait.
-- Try an invalid code: the page should show a neutral error.
-- Try the configured code: the Narcissu link should appear.
-- Check the Worker KV namespace: only event type and timestamp should be present.
-- Confirm the Worker URL is configured and CORS is restricted before sharing the page.
-
-## Notes
-
-This is a lightweight access gate, not a full authentication system. Anyone who receives the revealed game URL can share it. The gate keeps the link out of the landing-page HTML and public repository source; it cannot prevent an authorized visitor from copying the link.
+- Check the page on an iPhone-sized viewport in portrait.
+- Try a wrong 10-digit code and confirm the error appears.
+- Try the configured code and confirm the Narcissu link appears.
+- Open the revealed link and confirm it loads the game.
