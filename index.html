@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111522">
+  <meta name="description" content="A private note and a small invitation.">
+  <title>A little something — Project HM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="scene">
+    <div class="sky-glow" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="horizon" aria-hidden="true">
+      <div class="mountain mountain-back"></div>
+      <div class="mountain mountain-front"></div>
+      <div class="town"></div>
+    </div>
+
+    <svg class="red-thread" viewBox="0 0 430 820" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="threadShade" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff9b9d"/>
+          <stop offset=".48" stop-color="#d94a61"/>
+          <stop offset="1" stop-color="#8e233f"/>
+        </linearGradient>
+        <filter id="threadGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path class="thread-shadow" d="M-20 80 C100 140 5 240 118 305 S335 330 255 455 S70 620 155 720"/>
+      <path class="thread-main" d="M-20 80 C100 140 5 240 118 305 S335 330 255 455 S70 620 155 720"/>
+      <path class="thread-highlight" d="M-20 76 C100 136 5 236 118 301 S335 326 255 451 S70 616 155 716"/>
+    </svg>
+
+    <section class="content" aria-labelledby="headline">
+      <div class="eyebrow"><span class="eyebrow-line"></span> Welcome, Hedo <span class="eyebrow-line"></span></div>
+      <div class="title-mark" aria-hidden="true">結び</div>
+      <h1 id="headline">A little something<br><em>for you.</em></h1>
+      <p class="message">
+        This is something I'd like you to see,<br class="desktop-break">
+        and I hope you'll enjoy it.
+      </p>
+      <p class="instruction">
+        To make it private just for you, please enter your code below to reveal the link to the project.
+      </p>
+
+      <form id="access-form" novalidate>
+        <label for="access-code" lang="fa" dir="rtl">کد ملی</label>
+        <div class="input-wrap">
+          <input id="access-code" name="code" type="password" inputmode="numeric"
+                 autocomplete="off" maxlength="10" pattern="[0-9]{10}"
+                 placeholder="••••••••••" aria-describedby="form-message" required>
+          <button id="reveal-button" type="submit" aria-label="Check code">
+            <span>Reveal</span><span class="arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+
+      <div id="success-panel" class="success-panel" hidden>
+        <span class="success-kicker">JUST FOR YOU</span>
+        <a id="project-link" href="#" target="_blank" rel="noopener noreferrer">
+          Open the project <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <p class="signoff">Best wishes<span class="signoff-dot">.</span></p>
+    </section>
+
+    <footer class="footer">
+      <span>UNDER THE SAME SKY</span>
+      <span class="footer-star">✦</span>
+      <span>PROJECT HM</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
