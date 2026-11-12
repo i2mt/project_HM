@@ -18,7 +18,7 @@ form.addEventListener("submit", (event) => {
 
   const code = input.value.trim();
 
-  if (!/^\\d{10}$/.test(code)) {
+  if (!/^\d{10}$/.test(code)) {
     message.textContent = "Please enter the 10-digit code.";
     input.focus();
     return;
